@@ -1,22 +1,31 @@
-<form (ngSubmit)="saveAppointment()">
+<form *ngIf="appointmentForm" [formGroup]="appointmentForm" (ngSubmit)="saveAppointment()">
     <mat-form-field appearance="fill">
       <mat-label>Appointment Title</mat-label>
-      <input matInput [(ngModel)]="appointment.title" name="title">
+      <input matInput formControlName="title">
+      <mat-error *ngIf="appointmentForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="appointment.date" name="date">
+      <input matInput [matDatepicker]="picker" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="appointmentForm.get('date')?.hasError('required')">
+        Date is required
+      </mat-error>
     </mat-form-field>
   
     <mat-form-field appearance="fill">
       <mat-label>Time</mat-label>
-      <input matInput [(ngModel)]="appointment.time" name="time" [ngxTimepicker]="timepicker" readonly>
+      <input matInput formControlName="time" [ngxTimepicker]="timepicker" readonly>
       <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+      <mat-error *ngIf="appointmentForm.get('time')?.hasError('required')">
+        Time is required
+      </mat-error>
     </mat-form-field>
   
-    <button mat-raised-button color="primary">Save Appointment</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!appointmentForm.valid">Save Appointment</button>
   </form>
   

@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
-import { CalendarViewComponent } from './calendar/calendar-view/calendar-view.component';
-import { AppointmentFormComponent } from './calendar/appointment-form/appointment-form.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/calendar', pathMatch: 'full' },
-    { path: 'calendar', component: CalendarViewComponent },
-    { path: 'appointment', component: AppointmentFormComponent },
-    { path: '**', redirectTo: '/calendar' }
+  { path: '', redirectTo: '/calendar', pathMatch: 'full' },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then(m => m.CalendarModule)
+  },
+  {
+    path: 'appointment',
+    loadChildren: () => import('./calendar/appointment-form/appointment.module').then(m => m.AppointmentModule)
+  },
+  { path: '**', redirectTo: '/calendar' }
 ];
