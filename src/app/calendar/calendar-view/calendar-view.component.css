@@ -1,0 +1,28 @@
+.calendar-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .calendar-day {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+  
+  .day-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .appointment {
+    margin-top: 10px;
+  }
+  
+  .add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  

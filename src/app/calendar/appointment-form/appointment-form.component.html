@@ -1,0 +1,22 @@
+<form (ngSubmit)="saveAppointment()">
+    <mat-form-field appearance="fill">
+      <mat-label>Appointment Title</mat-label>
+      <input matInput [(ngModel)]="appointment.title" name="title">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="appointment.date" name="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Time</mat-label>
+      <input matInput [(ngModel)]="appointment.time" name="time" [ngxTimepicker]="timepicker" readonly>
+      <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary">Save Appointment</button>
+  </form>
+  

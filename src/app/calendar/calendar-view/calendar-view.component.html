@@ -1,0 +1,12 @@
+<div class="calendar-container">
+    <div class="calendar-day" *ngFor="let day of days">
+      <div class="day-header">{{ day }}</div>
+      <div *ngFor="let appointment of getAppointmentsForDay(day)" class="appointment">
+        {{ appointment.title }} at {{ appointment.time }}
+        <button mat-button color="primary" (click)="editAppointment(appointment)">Edit</button>
+        <button mat-button color="warn" (click)="deleteAppointment(appointment)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <button mat-fab class="add-button" (click)="openAppointmentForm()">+</button>
+  
